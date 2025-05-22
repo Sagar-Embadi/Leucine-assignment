@@ -75,7 +75,7 @@ export const createRequest = async (req, res) => {
 export const getRequests = async (req, res) => {
   try {
     let requests;
-    if (req.user.role === 'Admin' || req.user.role === 'Manager') {
+    if (req.user.role === 'Admin' || req.user.role === 'Manager' || req.user.role === 'Employee') {
       requests = await requestRepo.find();
     } else {
       requests = await requestRepo.find({ where: { user: { id: req.user.id } } });
