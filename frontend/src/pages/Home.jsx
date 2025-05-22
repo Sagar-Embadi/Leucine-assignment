@@ -21,8 +21,9 @@ export default function Home() {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     if (role == "Employee"){
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJNYW5hZ2VyIiwicm9sZSI6Ik1hbmFnZXIiLCJpYXQiOjE3NDc5MDQ4ODIsImV4cCI6MTc0NzkwODQ4Mn0.QfW3YETb83b8eAO_8P4gaPMoZugnVk_M6t_aj39J7hs'
+
       const username = localStorage.getItem("username");
 
       axios.get(`${getEnv('VITE_BACKEND_URL')}/api/requests`, {
@@ -33,7 +34,6 @@ export default function Home() {
      });
 
     }else{
-      const token = localStorage.getItem("token");
       axios
         .get(`${getEnv('VITE_BACKEND_URL')}/api/software`, {
           headers: {
@@ -86,7 +86,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen mt-20">
+    <div className="flex flex-col items-center mt-20 px-4">
       <h1 className="text-4xl font-bold mt-4">Welcome to LEUCINE</h1>
       <p className="text-lg mb-8">Your software management solution</p>
       {role != "Employee" &&(data.length !== 0?<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
@@ -120,7 +120,7 @@ export default function Home() {
           </div>
         ))}
       </div>: <NoSoftware/>)}
-      {role == 'Employee' &&(requests.length !=0 ?<div className="grid gap-6 grid-cols-1 md:grid-cols-3 lg:grid-cols-4  ">
+      {role == 'Employee' &&(requests.length !=0 ?<div className="grid gap-6 px-4 grid-cols-1 md:grid-cols-3 lg:grid-cols-4  ">
         {requests.map((request) => (
           <SoftwareRequestCard key={request.id} request={request} />
         ))}
