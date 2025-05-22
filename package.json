@@ -1,0 +1,17 @@
+{
+  "name": "leucine-assignment",
+  "version": "1.0.0",
+  "description": "This project is a role-based user access management system built with **Node.js**, **Express**, **React**, **TypeORM**, and **PostgreSQL**. It allows employees to request software access, managers to approve or reject requests, and admins to manage software listings.",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "npm run dev --prefix backend",
+    "client": "npm start --prefix frontend",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
